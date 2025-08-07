@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_variants",
+  "info": {
+    "singularName": "product-variant",
+    "pluralName": "product-variants",
+    "displayName": "Product Variant",
+    "description": "Different options/sizes/prices for products"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "sku": {
+      "type": "string",
+      "unique": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "compareAtPrice": {
+      "type": "decimal"
+    },
+    "attributes": {
+      "type": "json",
+      "description": "Color, size, etc. as key-value pairs"
+    },
+    "weight": {
+      "type": "decimal"
+    },
+    "dimensions": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.dimensions"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "isDefault": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_shared_meta_infos",
+  "info": {
+    "displayName": "Meta Info",
+    "icon": "info-circle",
+    "description": "Product metadata like SKU, weight, dimensions, etc."
+  },
+  "options": {},
+  "attributes": {
+    "sku": {
+      "type": "string"
+    },
+    "barcode": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "decimal",
+      "min": 0
+    },
+    "weightUnit": {
+      "type": "enumeration",
+      "enum": ["lb", "oz", "kg", "g"],
+      "default": "lb"
+    },
+    "length": {
+      "type": "decimal",
+      "min": 0
+    },
+    "width": {
+      "type": "decimal",
+      "min": 0
+    },
+    "height": {
+      "type": "decimal",
+      "min": 0
+    },
+    "dimensionUnit": {
+      "type": "enumeration",
+      "enum": ["in", "cm", "m"],
+      "default": "in"
+    },
+    "isShippable": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+} 

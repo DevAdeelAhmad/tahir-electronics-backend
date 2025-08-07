@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "special_offers",
+  "info": {
+    "singularName": "special-offer",
+    "pluralName": "special-offers",
+    "displayName": "Special Offer",
+    "description": "Special offers and promotions section"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "offer1": {
+      "type": "string",
+      "required": true,
+      "description": "First numbered offer description"
+    },
+    "offer2": {
+      "type": "string",
+      "required": true,
+      "description": "Second numbered offer description"
+    },
+    "offer3": {
+      "type": "string",
+      "required": true,
+      "description": "Third numbered offer description"
+    },
+    "buttonText": {
+      "type": "string",
+      "required": true
+    },
+    "buttonHref": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    }
+  }
+}

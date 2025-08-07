@@ -1,0 +1,80 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order",
+    "description": "Customer orders"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "orderNumber": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "orders"
+    },
+    "items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order-item.order-item",
+      "mappedBy": "order"
+    },
+    "shippingAddress": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.address",
+      "required": true
+    },
+    "billingAddress": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.address",
+      "required": true
+    },
+    "subtotal": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "total": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "orderDate": {
+      "type": "datetime",
+      "required": true
+    },
+    "shippingStatus": {
+      "type": "enumeration",
+      "enum": ["pending", "shipped", "delivered", "returned"],
+      "default": "pending"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "processing", "completed", "cancelled", "failed"],
+      "default": "pending",
+      "required": true
+    },
+    "paymentStatus": {
+      "type": "enumeration",
+      "enum": ["pending", "paid", "failed", "refunded", "partially_refunded"],
+      "default": "pending",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_shared_buttons",
+  "info": {
+    "displayName": "Button",
+    "icon": "hand-pointer",
+    "description": "Call to action button component"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "target": {
+      "type": "enumeration",
+      "enum": ["_self", "_blank"],
+      "default": "_self"
+    },
+    "style": {
+      "type": "enumeration",
+      "enum": ["primary", "secondary", "outline", "text"],
+      "default": "primary"
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": ["small", "medium", "large"],
+      "default": "medium"
+    },
+    "icon": {
+      "type": "string"
+    }
+  }
+} 

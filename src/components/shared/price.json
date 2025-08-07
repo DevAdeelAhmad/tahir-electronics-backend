@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_prices",
+  "info": {
+    "displayName": "Price",
+    "icon": "dollar-sign",
+    "description": "Price information including regular and sale price"
+  },
+  "options": {},
+  "attributes": {
+    "regularPrice": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "onSale": {
+      "type": "boolean",
+      "default": false
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": [
+        "PKR"
+      ],
+      "default": "PKR"
+    }
+  }
+}

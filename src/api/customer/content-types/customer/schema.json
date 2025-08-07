@@ -1,0 +1,90 @@
+{
+  "kind": "collectionType",
+  "collectionName": "customers",
+  "info": {
+    "singularName": "customer",
+    "pluralName": "customers",
+    "displayName": "Customer",
+    "description": "Store customer information"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "addresses": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.address"
+    },
+    "defaultBillingAddress": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "defaultShippingAddress": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order.order",
+      "mappedBy": "customer"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "lastOrderDate": {
+      "type": "datetime"
+    },
+    "orderCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "cart": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cart.cart",
+      "mappedBy": "customer"
+    },
+    "wishlists": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::wishlist.wishlist",
+      "mappedBy": "customer"
+    },
+    "aboutYou": {
+      "type": "richtext",
+      "required": false
+    },
+    "userAccountId": {
+      "type": "integer",
+      "required": false
+    }
+  }
+}

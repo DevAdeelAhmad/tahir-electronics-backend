@@ -1,0 +1,66 @@
+## Core E-commerce Collections
+1. **Product** 
+   - Stores all product information, pricing, and images
+   - Will link to categories and variants
+
+2. **ProductCategory**
+   - Classification of products (e.g., mushroom grow bags, cocoa fertilizer)
+   - Hierarchical structure for main/sub-categories
+
+3. **ProductVariant**
+   - For products with different options/sizes/prices
+
+4. **Order**
+   - Contains order information, status, and customer details
+   - Links to order items
+
+5. **OrderItem**
+   - Individual items within an order
+   - References products and their quantities
+
+6. **Customer**
+   - User profile data for customers
+   - Shipping/billing information
+
+## Content Collections
+7. **Page**
+   - For static pages (Home, About, Services, FAQ)
+   - Flexible content using Strapi's components
+
+8. **Blog/Article**
+   - For news, updates, or educational content
+   - Will need categories and possibly tags
+
+## Integration & Support Collections
+9. **Vendor**
+   - Information about vendors (Garden City Fungi, HortiRIGHT Co)
+   - Will link to products
+
+10. **Inventory**
+    - Stock levels for products
+    - Could include reorder points, availability status
+
+11. **ContactRequest**
+    - Stores form submissions from customers
+    - Support tickets or general inquiries
+
+## Configuration Collections
+12. **SiteSettings**
+    - Global site configuration
+    - Contact information, social links, etc.
+
+13. **SEO**
+    - For storing SEO-related information for pages and products
+
+14. **ShippingMethod**
+    - Different shipping options available
+
+15. **PaymentMethod**
+    - Payment options and configuration
+
+## Single Types (not collections)
+1. **Global**
+   - Site-wide settings and configuration
+
+2. **About**
+   - Company information

@@ -1,0 +1,44 @@
+{
+  "collectionName": "components_shared_stock_infos",
+  "info": {
+    "displayName": "Stock Info",
+    "icon": "boxes",
+    "description": "Product stock and inventory information"
+  },
+  "options": {},
+  "attributes": {
+    "inStock": {
+      "type": "boolean",
+      "default": true
+    },
+    "stockQuantity": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    },
+    "lowStockThreshold": {
+      "type": "integer",
+      "min": 0,
+      "default": 5
+    },
+    "backorderAllowed": {
+      "type": "boolean",
+      "default": false
+    },
+    "soldIndividually": {
+      "type": "boolean",
+      "default": false
+    },
+    "maxPurchaseQuantity": {
+      "type": "integer",
+      "min": 0
+    },
+    "vendorSku": {
+      "type": "string"
+    },
+    "vendorStockSync": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+} 

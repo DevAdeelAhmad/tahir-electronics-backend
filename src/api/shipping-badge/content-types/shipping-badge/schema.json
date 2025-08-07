@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shipping_badges",
+  "info": {
+    "singularName": "shipping-badge",
+    "pluralName": "shipping-badges",
+    "displayName": "shippingBadge"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

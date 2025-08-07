@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hero_sliders",
+  "info": {
+    "singularName": "hero-slider",
+    "pluralName": "hero-sliders",
+    "displayName": "Hero Slider",
+    "description": "Hero section slider with dynamic slides"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "imageUrl": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "subHeading": {
+      "type": "text",
+      "required": true
+    },
+    "btnText": {
+      "type": "string",
+      "required": true
+    },
+    "btnHref": {
+      "type": "string",
+      "required": true
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this slide should be displayed"
+    }
+  }
+}

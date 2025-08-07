@@ -1,0 +1,62 @@
+{
+  "kind": "singleType",
+  "collectionName": "contacts",
+  "info": {
+    "singularName": "contact",
+    "pluralName": "contacts",
+    "displayName": "Contact",
+    "description": "Contact page information and settings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Contact"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Optional subtitle for the contact page"
+    },
+    "businessAddress": {
+      "type": "text",
+      "required": true,
+      "description": "Business address for display"
+    },
+    "businessEmail": {
+      "type": "email",
+      "required": true,
+      "description": "Main business email address"
+    },
+    "businessPhone": {
+      "type": "string",
+      "required": true,
+      "description": "Main business phone number"
+    },
+    "socials": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.contact-info",
+      "description": "Social media links with custom images and URLs"
+    },
+    "contactFormSettings": {
+      "type": "json",
+      "description": "Settings for contact form behavior",
+      "default": {
+        "showNameField": true,
+        "showPhoneField": false,
+        "showSubjectField": true,
+        "requireSubject": false,
+        "placeholders": {
+          "name": "Example Doe",
+          "email": "example@example.com",
+          "subject": "Your subject",
+          "message": "Your message here..."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "wishlists",
+  "info": {
+    "singularName": "wishlist",
+    "pluralName": "wishlists",
+    "displayName": "Wishlist",
+    "description": "User product favorites and wishlists"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": "Default"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "wishlists"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "For anonymous users without accounts"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "inversedBy": "wishlists"
+    },
+    "productVariants": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product-variant.product-variant"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this wishlist can be shared publicly"
+    },
+    "shareableLink": {
+      "type": "string",
+      "unique": true
+    },
+    "notes": {
+      "type": "text"
+    },
+    "lastUpdated": {
+      "type": "datetime"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "wishlist.wishlist-item"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shipping_methods",
+  "info": {
+    "singularName": "shipping-method",
+    "pluralName": "shipping-methods",
+    "displayName": "Shipping Method",
+    "description": "Different shipping options available"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "carrierCode": {
+      "type": "string",
+      "description": "UPS, USPS, FedEx, etc."
+    },
+    "serviceCode": {
+      "type": "string",
+      "description": "Ground, Express, Priority, etc."
+    },
+    "estimatedDeliveryTime": {
+      "type": "string",
+      "description": "E.g., '2-3 business days'"
+    },
+    "baseCost": {
+      "type": "decimal",
+      "description": "Base shipping cost"
+    },
+    "freeShippingThreshold": {
+      "type": "decimal",
+      "description": "Order amount above which shipping is free"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "zones": {
+      "type": "json",
+      "description": "Geographic zones this shipping method applies to"
+    },
+    "restrictions": {
+      "type": "json",
+      "description": "Weight, dimensions, or product restrictions"
+    },
+    "displayOrder": {
+      "type": "integer",
+      "default": 1,
+      "description": "Order to display this shipping method in the checkout"
+    },
+    "handlingFee": {
+      "type": "decimal",
+      "default": 0
+    }
+  }
+} 

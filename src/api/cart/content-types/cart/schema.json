@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "carts",
+  "info": {
+    "singularName": "cart",
+    "pluralName": "carts",
+    "displayName": "Cart",
+    "description": "Shopping carts for users"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "items": {
+      "type": "json",
+      "description": "Cart items with product IDs, variants, quantities, etc."
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "cart"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "For anonymous users without accounts"
+    },
+    "subtotal": {
+      "type": "decimal",
+      "default": 0
+    },
+    "total": {
+      "type": "decimal",
+      "default": 0
+    },
+    "taxAmount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "lastUpdated": {
+      "type": "datetime"
+    }
+  }
+}

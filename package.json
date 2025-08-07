@@ -1,0 +1,53 @@
+{
+  "name": "tahirelectronics-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application for Tahir Electronics",
+  "scripts": {
+    "build": "strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 strapi develop",
+    "develop": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 strapi develop",
+    "seed:example": "node ./scripts/seed.js",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "seed:products": "node ./scripts/product-seed.js",
+    "configure:permissions": "node ./scripts/configure-permissions.js",
+    "setup:database": "node ./scripts/setup-new-database.js",
+    "clean:store": "node ./scripts/clean-for-new-store.js",
+    "seed:brands": "node ./scripts/seed-brands.js"
+  },
+  "dependencies": {
+    "@strapi/plugin-cloud": "5.12.6",
+    "@strapi/plugin-users-permissions": "5.12.6",
+    "@strapi/strapi": "5.12.6",
+    "@types/stripe": "^8.0.416",
+    "@vercel/blob": "^1.1.1",
+    "better-sqlite3": "11.3.0",
+    "fs-extra": "^10.0.0",
+    "mime-types": "^2.1.27",
+    "pg": "^8.16.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "stripe": "^18.3.0",
+    "styled-components": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "cross-env": "^7.0.3",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "a095317a-9b18-45de-8755-36ef8c0207f0"
+  }
+}

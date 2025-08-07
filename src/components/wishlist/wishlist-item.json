@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_wishlist_wishlist_items",
+  "info": {
+    "displayName": "Wishlist Item",
+    "description": "Items in a wishlist with additional metadata"
+  },
+  "options": {},
+  "attributes": {
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    },
+    "productVariant": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product-variant.product-variant"
+    },
+    "addedAt": {
+      "type": "datetime"
+    },
+    "quantity": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
+    },
+    "note": {
+      "type": "text"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["low", "medium", "high"],
+      "default": "medium"
+    }
+  }
+} 

@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_shared_social_links",
+  "info": {
+    "displayName": "Social Link",
+    "icon": "link",
+    "description": "Social media link with custom image and URL"
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "string",
+      "required": true,
+      "description": "Name of the social platform (e.g., Facebook, Instagram, etc.)"
+    },
+    "url": {
+      "type": "string",
+      "required": true,
+      "description": "URL link to the social media profile"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"],
+      "description": "Icon/image for the social media platform"
+    },
+    "altText": {
+      "type": "string",
+      "description": "Alternative text for the image (for accessibility)"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this social link should be displayed"
+    },
+    "sortOrder": {
+      "type": "integer",
+      "description": "Order in which this social link appears"
+    }
+  }
+}

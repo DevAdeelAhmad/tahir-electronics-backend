@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_contact_infos",
+  "info": {
+    "displayName": "Social Media Links",
+    "icon": "share-alt",
+    "description": "Collection of social media links with custom images"
+  },
+  "options": {},
+  "attributes": {
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.social-link"
+    }
+  }
+}

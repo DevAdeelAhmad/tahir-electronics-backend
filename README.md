@@ -1,0 +1,278 @@
+# Clothing Store Backend
+
+A comprehensive Strapi-based backend for an e-commerce clothing store, featuring all the essential APIs and content management capabilities needed for a modern fashion retail platform.
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js (18.x or higher)
+- npm or yarn
+
+### Installation
+
+1. **Install Dependencies**
+
+   ```bash
+   npm install
+   ```
+
+2. **Set Up Database & Initial Configuration**
+
+   ```bash
+   # Configure basic settings and permissions
+   npm run setup:database
+   ```
+
+3. **Start Development Server**
+
+   ```bash
+   npm run develop
+   ```
+
+4. **Access Admin Panel**
+   - Open your browser to `http://localhost:1337/admin`
+   - Create your admin account
+   - Start adding your clothing store content
+
+## 📦 Project Structure
+
+### API Collections
+
+- **Products** - Core product catalog with variants, pricing, and inventory
+- **Categories** - Product categorization and taxonomy
+- **Vendors/Brands** - Supplier and brand management
+- **Orders** - Complete order processing and management
+- **Customers** - Customer profiles and management
+- **Cart & Wishlist** - Shopping cart and wishlist functionality
+- **Reviews** - Product review and rating system
+- **Inventory** - Stock level tracking and management
+- **Payment Methods** - Payment gateway configuration
+- **Shipping Methods** - Shipping options and pricing
+- **Articles & Blog** - Content marketing and blog posts
+- **Special Offers** - Promotions and discount management
+
+### Single Types
+
+- **Global Settings** - Site-wide configuration
+- **Site Settings** - Store-specific settings
+- **About Page** - Company information
+- **Contact** - Contact information and forms
+
+## 🔧 Configuration
+
+### Environment Variables
+
+The `.env` file has been configured for local development with:
+
+- **Fresh Secrets** - New JWT tokens and API keys
+- **Local SQLite Database** - No external database required
+- **Local File Storage** - Files stored locally (no AWS S3)
+- **Stripe Integration** - Ready for payment processing
+
+### Key Features Configured
+
+- ✅ **Authentication System** - User registration, login, password change
+- ✅ **Role-Based Permissions** - Admin and public user roles
+- ✅ **Local File Uploads** - Images and documents stored locally
+- ✅ **Payment Integration** - Stripe payment processing ready
+- ✅ **Order Management** - Complete e-commerce order flow
+- ✅ **Inventory Tracking** - Stock level management
+- ✅ **Content Management** - Blog and marketing content
+
+## 🎯 Available Scripts
+
+| Command                         | Description                               |
+| ------------------------------- | ----------------------------------------- |
+| `npm run develop`               | Start development server with auto-reload |
+| `npm run start`                 | Start production server                   |
+| `npm run build`                 | Build the admin panel                     |
+| `npm run setup:database`        | Configure initial database settings       |
+| `npm run clean:store`           | Clean all content data for fresh start    |
+| `npm run configure:permissions` | Set up role permissions                   |
+| `npm run seed:products`         | Seed sample product data                  |
+
+## 🗄️ Database Management
+
+### Fresh Start Setup
+
+If you want to start completely fresh:
+
+1. **Clean existing data** (preserves schema and auth):
+
+   ```bash
+   npm run clean:store
+   ```
+
+2. **Set up fresh configuration**:
+   ```bash
+   npm run setup:database
+   ```
+
+### Database Options
+
+- **Current**: SQLite (local development)
+- **Production**: Can be switched to PostgreSQL by updating `.env`
+
+## 🔐 Authentication
+
+The authentication system is fully preserved and includes:
+
+- User registration and login
+- JWT-based authentication
+- Role-based access control
+- Password change functionality
+- Protected routes and permissions
+
+### Default Roles
+
+- **Authenticated** - Logged in users
+- **Public** - Anonymous users
+- **Admin** - Full system access
+
+## 📁 File Management
+
+### Upload Configuration
+
+- **Storage**: Local file system
+- **Location**: `public/uploads/`
+- **Size Limit**: 10MB per file
+- **Supported**: Images, documents, media files
+
+### Upload Directories
+
+- `public/uploads/` - Publicly accessible uploaded files
+- `data/uploads/` - Private uploaded files
+
+## 🛒 E-commerce Features
+
+### Product Management
+
+- Product catalog with variants
+- Category and subcategory organization
+- Vendor/brand management
+- Inventory tracking
+- Pricing and discount management
+
+### Order Processing
+
+- Shopping cart functionality
+- Order creation and tracking
+- Payment processing integration
+- Shipping method configuration
+- Order status management
+
+### Customer Management
+
+- Customer profiles
+- Order history
+- Wishlist functionality
+- Review and rating system
+
+## 🔌 API Endpoints
+
+All APIs are automatically generated by Strapi and follow RESTful conventions:
+
+### Core Collections
+
+- `GET|POST /api/products` - Product management
+- `GET|POST /api/categories` - Category management
+- `GET|POST /api/orders` - Order processing
+- `GET|POST /api/customers` - Customer management
+- `GET|POST /api/reviews` - Review system
+
+### Authentication
+
+- `POST /api/auth/local` - User login
+- `POST /api/auth/local/register` - User registration
+- `POST /api/users/change-password` - Change password
+
+### File Uploads
+
+- `POST /api/upload` - File upload endpoint
+
+## 🎨 Customization
+
+### Adding New Content Types
+
+1. Use the Strapi admin panel Content-Type Builder
+2. Define your schema and relationships
+3. Configure permissions
+4. The API endpoints are automatically generated
+
+### Custom Controllers
+
+Add custom business logic in:
+
+- `src/api/[collection]/controllers/`
+- `src/api/[collection]/services/`
+- `src/api/[collection]/routes/`
+
+## 🚀 Deployment
+
+### Development
+
+```bash
+npm run develop
+```
+
+### Production
+
+```bash
+npm run build
+npm run start
+```
+
+### Environment Setup
+
+Update `.env` for production:
+
+- Set production database credentials
+- Update Stripe keys for live payments
+- Configure proper secrets and tokens
+
+## 🆘 Troubleshooting
+
+### Common Issues
+
+1. **Port already in use**
+
+   - Change `PORT` in `.env` file
+   - Or kill process on port 1337
+
+2. **Database connection issues**
+
+   - Check database configuration in `.env`
+   - Ensure database server is running
+
+3. **Upload issues**
+
+   - Check file permissions on `public/uploads/`
+   - Verify file size limits
+
+4. **Authentication problems**
+   - Verify JWT secrets in `.env`
+   - Check user permissions in admin panel
+
+## 📝 Next Steps
+
+1. **Start the development server**: `npm run develop`
+2. **Access admin panel**: `http://localhost:1337/admin`
+3. **Create admin account** and explore the interface
+4. **Configure your store settings** in Site Settings
+5. **Add your product categories** in Categories
+6. **Add your clothing products** in Products
+7. **Test the API endpoints** with your frontend
+8. **Configure Stripe** for payment processing
+
+## 🤝 Support
+
+For issues or questions:
+
+1. Check the troubleshooting section above
+2. Review Strapi documentation: https://docs.strapi.io
+3. Check the project scripts for available commands
+
+---
+
+**Ready to build your clothing store!** 👕✨

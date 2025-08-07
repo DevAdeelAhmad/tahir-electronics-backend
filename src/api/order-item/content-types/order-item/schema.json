@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "order_items",
+  "info": {
+    "singularName": "order-item",
+    "pluralName": "order-items",
+    "displayName": "Order Item",
+    "description": "Individual items within an order"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "quantity": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "unitPrice": {
+      "type": "decimal",
+      "required": true
+    },
+    "totalPrice": {
+      "type": "decimal",
+      "required": true
+    },
+    "order": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::order.order",
+      "inversedBy": "items"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "items"
+    },
+    "variant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-variant.product-variant"
+    },
+    "metadata": {
+      "type": "json",
+      "description": "Additional information like selected options, customizations, etc."
+    },
+    "sku": {
+      "type": "string"
+    },
+    "productName": {
+      "type": "string",
+      "required": true,
+      "description": "Stored name at time of order for historical purposes"
+    },
+    "variantName": {
+      "type": "string",
+      "description": "Stored variant name at time of order for historical purposes"
+    },
+    "discounts": {
+      "type": "json",
+      "description": "Any discounts applied to this item"
+    },
+    "taxRate": {
+      "type": "decimal",
+      "description": "Tax rate applied to this item"
+    },
+    "taxAmount": {
+      "type": "decimal",
+      "description": "Total tax amount for this item"
+    },
+    "productImage": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_shared_dimensions",
+  "info": {
+    "displayName": "Dimensions",
+    "description": "Product or package dimensions"
+  },
+  "options": {},
+  "attributes": {
+    "length": {
+      "type": "decimal"
+    },
+    "width": {
+      "type": "decimal"
+    },
+    "height": {
+      "type": "decimal"
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": ["in", "cm", "m", "ft"],
+      "default": "in"
+    }
+  }
+} 
