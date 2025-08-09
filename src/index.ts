@@ -110,86 +110,152 @@ export default {
    * run jobs, or perform some special logic.
    */
   bootstrap({ strapi }: { strapi: Core.Strapi }) {
-    // Override upload service to use Vercel Blob
     const token = process.env.BLOB_READ_WRITE_TOKEN;
     if (token) {
       const uploadService = strapi.plugin("upload").service("upload");
       const originalUpload = uploadService.upload;
       const originalDelete = uploadService.delete;
 
-      // Override upload method
+      // Override upload method to use ONLY Vercel Blob (no local storage)
       uploadService.upload = async function (files: any, options: any = {}) {
         const provider = vercelBlobProvider.init({
           token,
           folder: "tahir-electronics",
         });
 
-        // First process files through original upload to get proper file structure
+        // First, let Strapi process the files normally (this handles file content, generates hashes, etc.)
         const result = await originalUpload.call(this, files, options);
 
-        // Then upload to Vercel Blob
+        // Then upload to Vercel Blob and update URLs
         const processedFiles = Array.isArray(result) ? result : [result];
+
         for (const file of processedFiles) {
           try {
-            // Read file from local path and upload to Vercel Blob
+            const fs = require("fs");
+            const path = require("path");
+            const { put } = require("@vercel/blob");
+
+            // Upload main file to Vercel Blob
             if (file.url && file.url.startsWith("/uploads/")) {
-              const fs = require("fs");
-              const path = require("path");
               const filePath = path.join(process.cwd(), "public", file.url);
 
               if (fs.existsSync(filePath)) {
                 const fileContent = fs.readFileSync(filePath);
                 const blobPath = `tahir-electronics/${file.hash}${file.ext}`;
 
-                const { put } = require("@vercel/blob");
                 const blob = await put(blobPath, fileContent, {
                   access: "public",
                   token,
                   contentType: file.mime,
                 });
 
-                // Update the file URL to point to Vercel Blob
+                // Update main file URL to point to Vercel Blob
                 file.url = blob.url;
                 file.provider_metadata = {
                   blobUrl: blob.url,
                   blobPath: blobPath,
                 };
 
-                // Update in database
-                await strapi.query("plugin::upload.file").update({
-                  where: { id: file.id },
-                  data: {
-                    url: blob.url,
-                    provider_metadata: file.provider_metadata,
-                  },
-                });
-
-                console.log(`✅ File uploaded to Vercel Blob: ${blob.url}`);
+                // Delete local main file
+                fs.unlinkSync(filePath);
+                console.log(`✅ Main file uploaded to Blob: ${file.name}`);
               }
             }
+
+            // Upload ALL formats (thumbnails, small, medium, large) to Vercel Blob
+            if (file.formats) {
+              for (const formatKey of Object.keys(file.formats)) {
+                const format = file.formats[formatKey];
+                if (format.url && format.url.startsWith("/uploads/")) {
+                  const formatPath = path.join(
+                    process.cwd(),
+                    "public",
+                    format.url
+                  );
+
+                  if (fs.existsSync(formatPath)) {
+                    const formatContent = fs.readFileSync(formatPath);
+                    const formatBlobPath = `tahir-electronics/${formatKey}_${file.hash}${file.ext}`;
+
+                    const formatBlob = await put(
+                      formatBlobPath,
+                      formatContent,
+                      {
+                        access: "public",
+                        token,
+                        contentType: file.mime,
+                      }
+                    );
+
+                    // Update format URL to point to Vercel Blob
+                    file.formats[formatKey].url = formatBlob.url;
+                    file.formats[formatKey].provider_metadata = {
+                      blobUrl: formatBlob.url,
+                      blobPath: formatBlobPath,
+                    };
+
+                    // Delete local format file
+                    fs.unlinkSync(formatPath);
+                    console.log(`✅ Format ${formatKey} uploaded to Blob`);
+                  }
+                }
+              }
+            }
+
+            // Update entire file record in database with all new Blob URLs
+            await strapi.query("plugin::upload.file").update({
+              where: { id: file.id },
+              data: {
+                url: file.url,
+                formats: file.formats,
+                provider_metadata: file.provider_metadata,
+              },
+            });
+
+            console.log(
+              `🎉 ALL files (main + formats) uploaded to Vercel Blob and deleted locally: ${file.name}`
+            );
           } catch (error) {
-            console.error("Vercel Blob upload error:", error);
-            // Don't fail the upload if Vercel Blob fails - file is still saved locally
+            console.error(
+              `❌ Failed to upload ${file.name} to Vercel Blob:`,
+              error
+            );
+            // Don't throw error - file is still saved locally as backup
           }
         }
 
         return result;
       };
 
-      // Override delete method
+      // Override delete method to delete from Blob only
       uploadService.delete = async function (file: any, options: any = {}) {
+        console.log(`🗑️ Deleting file: ${file.name} (ID: ${file.id})`);
+
         const provider = vercelBlobProvider.init({
           token,
           folder: "tahir-electronics",
         });
 
-        await provider.delete(file);
+        // Delete from Vercel Blob
+        try {
+          await provider.delete(file);
+          console.log(`✅ File deleted from Vercel Blob: ${file.name}`);
+        } catch (error) {
+          console.error(
+            `❌ Failed to delete from Vercel Blob: ${file.name}`,
+            error
+          );
+        }
+
+        // Call original delete to remove from database
         return originalDelete.call(this, file, options);
       };
 
-      console.log("✅ Vercel Blob upload provider initialized");
+      console.log("✅ Vercel Blob-only upload provider initialized");
     } else {
-      console.warn("⚠️ BLOB_READ_WRITE_TOKEN not found, using local storage");
+      console.warn(
+        "⚠️ BLOB_READ_WRITE_TOKEN not found, using default local storage"
+      );
     }
   },
 };
