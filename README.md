@@ -1,4 +1,4 @@
-# Clothing Store Backend
+# Clothing Store
 
 A comprehensive Strapi-based backend for an e-commerce clothing store, featuring all the essential APIs and content management capabilities needed for a modern fashion retail platform.
 

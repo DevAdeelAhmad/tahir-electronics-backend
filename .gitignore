@@ -4,7 +4,6 @@ dist/
 .tmp/
 .cache/
 build/
-.vscode/
 .idea/
 *.log
 logs/
@@ -13,3 +12,7 @@ logs/
 .DS_Store
 Thumbs.db
 .strapi
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
